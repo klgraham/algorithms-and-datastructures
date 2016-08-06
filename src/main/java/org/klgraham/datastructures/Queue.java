@@ -9,57 +9,57 @@ import java.util.function.Consumer;
 /**
  * Created by klogram on 8/6/16.
  */
-public class Stack<T> implements Iterable<T> {
+public class Queue<T> implements Iterable<T> {
 
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
+        Queue<Integer> queue = new Queue<>();
         for (int i = 0; i <= 7; i++) {
-            stack.push(i);
+            queue.enqueue(i);
         }
 
         System.out.println("Items added, shown in order, with foreach");
-        stack.forEach(i -> System.out.println(i));
+        queue.forEach(i -> System.out.println(i));
 
-        System.out.println("Items added (LIFO):");
+        System.out.println("Items added (FIFO):");
         for (int i = 0; i <= 7; i++) {
-            System.out.println(stack.pop());
+            System.out.println(queue.dequeue());
         }
     }
 
-    List<T> stack;
-
-    public Stack() {
-        this.stack = new ArrayList<T>();
+    public Queue() {
+        this.queue = new ArrayList<T>();
     }
 
-    public void push(T item) {
-        stack.add(item);
+    List<T> queue;
+    
+    public void enqueue(T item) {
+        queue.add(item);
     }
 
-    public T pop() {
-        return stack.remove(stack.size() - 1);
+    public T dequeue() {
+        return queue.remove(0);
     }
 
     public boolean isEmpty() {
-        return stack.isEmpty();
+        return queue.isEmpty();
     }
 
     public int size() {
-        return stack.size();
+        return queue.size();
     }
 
     @Override
     public Iterator<T> iterator() {
-        return stack.iterator();
+        return queue.iterator();
     }
 
     @Override
     public void forEach(Consumer<? super T> action) {
-        stack.forEach(action);
+        queue.forEach(action);
     }
 
     @Override
     public Spliterator<T> spliterator() {
-        return stack.spliterator();
+        return queue.spliterator();
     }
 }
