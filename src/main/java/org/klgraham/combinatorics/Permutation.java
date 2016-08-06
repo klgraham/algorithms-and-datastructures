@@ -1,4 +1,4 @@
-package org.klgraham.permutations;
+package org.klgraham.combinatorics;
 
 import java.util.List;
 

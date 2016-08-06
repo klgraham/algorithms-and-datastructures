@@ -1,4 +1,4 @@
-package org.klgraham;
+package org.klgraham.combinatorics;
 
 /**
  * Description of file content.
