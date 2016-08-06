@@ -4,23 +4,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Description of file content.
+ * Several ways to compute fibonacci numbers
  *
  * @author kgraham
  *         8/5/16
  */
 public class Fibonacci
 {
-	// Compute's nth Fibonacci number, with recursion (simple and slow)
-	public static int recursiveFibonacci(int n)
+	// Compute's nth Fibonacci number, with recursion (naive, not tail-recursive)
+	@Deprecated
+	public static int naiveRecursiveFibonacci(int n)
 	{
 		if (n == 0) return 0;
 		if (n == 1) return 1;
 
-		return recursiveFibonacci(n-1) + recursiveFibonacci(n-2);
+		return naiveRecursiveFibonacci(n-1) + naiveRecursiveFibonacci(n-2);
 	}
 
+	// tail-recursive
 	public static int fibonacci(int n)
+	{
+		if (n == 0) return 0;
+		if (n == 1) return 1;
+
+		return fibonacciAccumulator(n-1, 0, 1);
+	}
+
+	private static int fibonacciAccumulator(int n, int prevPrev, int prev) {
+		if (n == 0) return prev + prevPrev;
+		return fibonacciAccumulator(n-1, prev, prev + prevPrev);
+	}
+
+	@Deprecated
+	public static int iterativeFibonacci(int n)
 	{
 		int fn_2 = 0;
 		int fn_1 = 1;
@@ -40,14 +56,17 @@ public class Fibonacci
 
 	private static Map<Integer, Integer> cache = new HashMap<Integer, Integer>();
 
-	// Compute's nth Fibonacci number, with recursion (caching, faster)
-	public static int recursiveFibonacciWithCaching(int n)
+	// tail-recursive, with caching
+	// not so much needed with a tail-recursive version, unless you'll be computing
+	// fibonacci numbers a lot and don't want to recalculate
+	@Deprecated
+	public static int fibonacciWithCaching(int n)
 	{
 		if (n == 0) return 0;
 		if (n == 1) return 1;
 		if (cache.containsKey(n)) return cache.get(n);
 
-		int result = recursiveFibonacci(n-1) + recursiveFibonacci(n-2);
+		int result = fibonacci(n-1) + fibonacci(n-2);
 		cache.put(n, result);
 		return result;
 	}
@@ -56,7 +75,7 @@ public class Fibonacci
 	private static double oneMinusphi = -0.6180339887498948482;
 	private static double sqrt5 = Math.sqrt(5.0);
 
-	// Compute's nth Fibonacci number, with Golden Ratio (caching, fastest)
+	// Compute's nth Fibonacci number, with Golden Ratio (caching)
 	public static int goldenRationFibonacciWithCaching(int n)
 	{
 		if (n == 0) return 0;
@@ -70,24 +89,24 @@ public class Fibonacci
 
 	public static void main(String[] args)
 	{
-		int N = 46;
+		int N = 40;
 
-//		System.out.println("\nRecursive:");
-//		for (int n = 0; n <= N; n++)
-//		{
-//			System.out.println("F(" + n + ") = " + recursiveFibonacci(n));
-//		}
-		System.out.println("\nRecursive, with Caching:");
-		for (int n = 0; n <= N; n++)
-		{
-			System.out.println("F(" + n + ") = " + recursiveFibonacciWithCaching(n));
-		}
-		System.out.println("\niterative:");
+		System.out.println("\nTail-recursive:");
 		for (int n = 0; n <= N; n++)
 		{
 			System.out.println("F(" + n + ") = " + fibonacci(n));
 		}
-		System.out.println("\nGolden Ratio:");
+//		System.out.println("\nTail-recursive, with Caching:");
+//		for (int n = 0; n <= N; n++)
+//		{
+//			System.out.println("F(" + n + ") = " + fibonacciWithCaching(n));
+//		}
+//		System.out.println("\niterative:");
+//		for (int n = 0; n <= N; n++)
+//		{
+//			System.out.println("F(" + n + ") = " + iterativeFibonacci(n));
+//		}
+		System.out.println("\nUsing Golden Ratio:");
 		cache.clear();
 		for (int n = 0; n <= N; n++)
 		{
