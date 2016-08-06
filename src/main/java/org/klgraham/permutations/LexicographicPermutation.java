@@ -1,4 +1,6 @@
-package org.klgraham;
+package org.klgraham.permutations;
+
+import org.klgraham.BasicCombinatorics;
 
 import java.util.*;
 
@@ -7,15 +9,15 @@ import java.util.*;
  * Donald Knuth's Fascicle 2B of TAOCP, Generating all permutations.
  * @param <T> type of items to be permuted.
  */
-public class Permutations<T extends Comparable<T>> {
+public class LexicographicPermutation<T extends Comparable<T>> extends Permutation {
 
     private T[] sequence;
     private final int n;
-    public final int numPermutations;
+    public final int count;
 
     private int[] a;
 
-    public Permutations(T[] sequence) {
+    public LexicographicPermutation(T[] sequence) {
         this.sequence = sequence;
         Arrays.sort(this.sequence);
         n = sequence.length;
@@ -25,27 +27,27 @@ public class Permutations<T extends Comparable<T>> {
             a[j] = j;
         }
 
-        numPermutations = BasicCombinatorics.recursiveFactorial(this.n);
+        count = BasicCombinatorics.recursiveFactorial(this.n);
     }
 
     public static void main(String[] args) {
-        Permutations<Integer> intPerm = new Permutations<>(new Integer[]{1, 0, 2, 3});
+        LexicographicPermutation<Integer> intPerm = new LexicographicPermutation<>(new Integer[]{1, 0, 2, 3});
         System.out.println("Starting sequence: " + intPerm.getSequence());
 
-        System.out.println("Number of permutations: " + intPerm.numPermutations);
-        System.out.println("Permutations: ");
+        System.out.println("Number of permutations: " + intPerm.count);
+        System.out.println("LexicographicPermutation: ");
 
-        for (int i = 1; i < intPerm.numPermutations; i++) {
+        for (int i = 1; i < intPerm.count; i++) {
             System.out.println(intPerm.next());
         }
 
-        Permutations<String> stringPermutations = new Permutations<>(new String[]{"a", "b", "c", "d"});
+        LexicographicPermutation<String> stringPermutations = new LexicographicPermutation<>(new String[]{"a", "b", "c", "d"});
         System.out.println("\nStarting sequence: " + stringPermutations.getSequence());
 
-        System.out.println("Number of permutations: " + stringPermutations.numPermutations);
-        System.out.println("Permutations: ");
+        System.out.println("Number of permutations: " + stringPermutations.count);
+        System.out.println("LexicographicPermutation: ");
 
-        for (int i = 1; i < stringPermutations.numPermutations; i++) {
+        for (int i = 1; i < stringPermutations.count; i++) {
             System.out.println(stringPermutations.next());
         }
     }
@@ -64,8 +66,6 @@ public class Permutations<T extends Comparable<T>> {
         for (int p = 0; p < n; p++) {
             permutation.add(sequence[a[p]]);
         }
-
-
 
         return permutation;
     }
