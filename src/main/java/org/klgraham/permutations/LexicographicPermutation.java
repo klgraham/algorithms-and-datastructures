@@ -59,9 +59,9 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
     public List<T> next() {
         List<T> permutation = new ArrayList<T>();
 
-        int j = findIndexToUpdate();
-        updateAt(j);
-        reverseBetween(j, n);
+        int j = getIndexToUpdate();
+        update(j);
+        reverseFrom(j+1);
 
         for (int p = 0; p < n; p++) {
             permutation.add(sequence[a[p]]);
@@ -70,7 +70,7 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
         return permutation;
     }
 
-    private int findIndexToUpdate() {
+    private int getIndexToUpdate() {
         int j = n - 1;
 
         while (j > 0 && a[j-1] >= a[j]) {
@@ -79,7 +79,7 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
         return j;
     }
 
-    private void updateAt(int j) {
+    private void update(int j) {
         int l = n;
 
         while (a[j-1] >= a[l-1]) {
@@ -88,8 +88,8 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
         swap(j-1, l-1);
     }
 
-    private void reverseBetween(int j, int n) {
-        int k = j+1;
+    private void reverseFrom(int j) {
+        int k = j;
         int l = n;
 
         while (k < l) {
