@@ -1,5 +1,7 @@
 package org.klgraham;
 
+import java.util.function.Function;
+
 /**
  * Created by klogram on 8/5/16.
  */
@@ -39,6 +41,12 @@ public class StringReversal {
         return accumulateWords(words, remainingWords - 1, accumulator);
     }
 
+    public static boolean isPalindrome(final String s) {
+        String s1 = s.toLowerCase().replace(" ", "");
+        return s1.equals(reverseStringRecursive(s1));
+    }
+
+
     public static void main(String[] args) {
         String s1 = "This is a test. This is only a test.";
 
@@ -47,5 +55,11 @@ public class StringReversal {
         System.out.println("Reversed string (recursive): " + reverseStringRecursive(s1));
         System.out.println("Reversed words (recursive): " + reverseWords(s1));
 
+        String s2 = "Are we not drawn onward to new era"; //?
+
+        System.out.println("String: " + s2.toLowerCase().replace(" ", ""));
+        System.out.println("Reversed string: " + reverseStringRecursive(s2).toLowerCase().replace(" ", ""));
+        System.out.println("'" + s2 + "' is a palindrome? " + isPalindrome(s2.toLowerCase().replace(" ", "")));
+        System.out.println("'" + s1 + "' is a palindrome? " + isPalindrome(s1.toLowerCase().replace(" ", "")));
     }
 }
