@@ -26,7 +26,7 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
             a[j] = j;
         }
 
-        count = BasicCombinatorics.recursiveFactorial(this.n);
+        count = BasicCombinatorics.factorial(this.n).intValue();
     }
 
     public static void main(String[] args) {

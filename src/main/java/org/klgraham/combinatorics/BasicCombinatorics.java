@@ -3,7 +3,7 @@ package org.klgraham.combinatorics;
 import java.math.BigInteger;
 
 /**
- * Description of file content.
+ * Factorial and Binomial
  *
  * @author kgraham
  *         8/5/16
@@ -23,10 +23,10 @@ public class BasicCombinatorics {
 
 	// Java does not have tail-call optimization, so this will not work for large n
 	@Deprecated
-	public static int recursiveFactorial(int n) {
+	public static int naiveRecursiveFactorial(int n) {
 		if (n > 0)
 		{
-			return n * recursiveFactorial(n - 1);
+			return n * naiveRecursiveFactorial(n - 1);
 		} else
 		{
 			return 1;
