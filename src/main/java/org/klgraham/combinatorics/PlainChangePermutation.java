@@ -16,18 +16,23 @@ public class PlainChangePermutation<T extends Comparable<T>> extends Permutation
     public final int count;
 
     private int[] a;
+    private int[] o;
+    private int[] c; // auxillary array
 
     public PlainChangePermutation(T[] sequence) {
         this.sequence = sequence;
         Arrays.sort(this.sequence);
         n = sequence.length;
         a = new int[n];
+        o = new int[n];
+        c = new int[n];
 
         for (int j = 0; j < n; j++) {
             a[j] = j;
+            o[j] = 1;
         }
 
-        count = BasicCombinatorics.recursiveFactorial(this.n);
+        count = BasicCombinatorics.factorial(this.n).intValue();
     }
 
     public static void main(String[] args) {
@@ -59,44 +64,38 @@ public class PlainChangePermutation<T extends Comparable<T>> extends Permutation
     public List<T> next() {
         List<T> permutation = new ArrayList<T>();
 
-        int j = getIndexToUpdate();
-        update(j);
-        reverseFrom(j+1);
+        int j = n;
+        int s = 0;
+        int q;
+
+        while (j > 1) {
+            q = c[j-1] + o[j-1]; // P4
+
+            if (q < 0) {
+                // P7
+                o[j - 1] *= -1;
+                j--;
+                continue; // back to P4
+            } else if (q == j) {
+                // P6
+                if (j == 1) break;
+                s++;
+                o[j - 1] *= -1;
+                j--;
+                continue; // back to P4
+            } else {
+                //P5
+                swap(j-1 - c[j-1] + s, j-1 - q + s);
+                c[j-1] = q;
+                break;
+            }
+        }
 
         for (int p = 0; p < n; p++) {
             permutation.add(sequence[a[p]]);
         }
-
         return permutation;
-    }
 
-    private int getIndexToUpdate() {
-        int j = n - 1;
-
-        while (j > 0 && a[j-1] >= a[j]) {
-            j--;
-        }
-        return j;
-    }
-
-    private void update(int j) {
-        int l = n;
-
-        while (a[j-1] >= a[l-1]) {
-            l--;
-        }
-        swap(j-1, l-1);
-    }
-
-    private void reverseFrom(int j) {
-        int k = j;
-        int l = n;
-
-        while (k < l) {
-            swap(k-1, l-1);
-            k++;
-            l--;
-        }
     }
 
     private void swap(int i, int j) {
