@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Permutation generation. Implements algorithm P (plain changes) from
- * Donald Knuth's Fascicle 2B of TAOCP, Generating all combinatorics.
+ * Donald Knuth's Fascicle 2B of TAOCP, Generating all permutations.
  * @param <T> type of items to be permuted.
  */
 public class PlainChangePermutation<T extends Comparable<T>> extends Permutation {

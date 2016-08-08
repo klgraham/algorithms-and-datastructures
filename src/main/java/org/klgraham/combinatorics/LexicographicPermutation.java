@@ -1,11 +1,12 @@
 package org.klgraham.combinatorics;
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Lexicographic permutation generation. Implements algorithm L from
- * Donald Knuth's Fascicle 2B of TAOCP, Generating all combinatorics.
+ * Donald Knuth's Fascicle 2B of TAOCP, Generating all permutations.
  * @param <T> type of items to be permuted.
  */
 public class LexicographicPermutation<T extends Comparable<T>> extends Permutation {
