@@ -34,7 +34,7 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
         LexicographicPermutation<Integer> intPerm = new LexicographicPermutation<>(new Integer[]{1, 0, 2, 3});
         System.out.println("Starting sequence: " + intPerm.getSequence());
 
-        System.out.println("Number of combinatorics: " + intPerm.count);
+        System.out.println("Number of permutations: " + intPerm.count);
         System.out.println("LexicographicPermutation: ");
 
         for (int i = 1; i < intPerm.count; i++) {
@@ -44,7 +44,7 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
         LexicographicPermutation<String> stringPermutations = new LexicographicPermutation<>(new String[]{"a", "b", "c", "d"});
         System.out.println("\nStarting sequence: " + stringPermutations.getSequence());
 
-        System.out.println("Number of combinatorics: " + stringPermutations.count);
+        System.out.println("Number of permutations: " + stringPermutations.count);
         System.out.println("LexicographicPermutation: ");
 
         for (int i = 1; i < stringPermutations.count; i++) {
@@ -56,7 +56,7 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
         LexicographicPermutation<Character> applePermutations = new LexicographicPermutation<>(stringToCharacters(s1));
         System.out.println("\nStarting sequence: " + applePermutations.getSequence());
 
-        System.out.println("Number of combinatorics: " + applePermutations.count);
+        System.out.println("Number of permutations: " + applePermutations.count);
         System.out.println("Lexicographic Permutations: ");
 
         for (int i = 1; i < applePermutations.count; i++) {
