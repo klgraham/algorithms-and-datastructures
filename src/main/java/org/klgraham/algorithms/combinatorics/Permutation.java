@@ -1,4 +1,4 @@
-package org.klgraham.combinatorics;
+package org.klgraham.algorithms.combinatorics;
 
 import java.util.List;
 
