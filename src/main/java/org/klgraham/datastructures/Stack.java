@@ -7,7 +7,10 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * Created by klogram on 8/6/16.
+ * A Stack works like a stack of papers on a desk. You add things to the top
+ * and remove things from the top. Older items are at the bottom of the stack.
+ * This is a last in, first out (LIFO) process.
+ * @author Kenneth Graham
  */
 public class Stack<T> implements Iterable<T> {
 
@@ -32,10 +35,26 @@ public class Stack<T> implements Iterable<T> {
         this.stack = new ArrayList<T>();
     }
 
+    /**
+     * Adds one item to the top of the stack.
+     * @param item
+     */
     public void push(T item) {
         stack.add(item);
     }
 
+    /**
+     * Returns the item at the top of the stack without removing it.
+     * @return item
+     */
+    public T peek() {
+        return stack.get(stack.size() - 1);
+    }
+
+    /**
+     * Removes an item from the top of the stack.
+     * @return the removed item
+     */
     public T pop() {
         return stack.remove(stack.size() - 1);
     }

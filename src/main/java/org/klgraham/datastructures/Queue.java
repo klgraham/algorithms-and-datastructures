@@ -7,7 +7,10 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * Created by klogram on 8/6/16.
+ * A Queue is a waiting line. Items are added to the back of the queue and are
+ * removed from the front of the queue. Older items are at the front. This is
+ * a first in, first out (FIFO) process.
+ * @author Kenneth Graham
  */
 public class Queue<T> implements Iterable<T> {
 
@@ -31,11 +34,19 @@ public class Queue<T> implements Iterable<T> {
     }
 
     List<T> queue;
-    
+
+    /**
+     * Adds an item to the back of the queue.
+     * @param item
+     */
     public void enqueue(T item) {
         queue.add(item);
     }
 
+    /**
+     * Removes an item from the front of the queue and returns it.
+     * @return the item
+     */
     public T dequeue() {
         return queue.remove(0);
     }
