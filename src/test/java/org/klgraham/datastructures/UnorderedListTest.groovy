@@ -10,26 +10,26 @@ import spock.lang.Specification
 class UnorderedListTest extends Specification {
 
 	def "Can add an item to the front of the list"() {
-		given: "an initial list and an item to add to the head"
-		def list = new UnorderedList("initial item")
-		def item2 = "second item added"
+		given: "an initial list and an data to add to the head"
+		def list = new UnorderedList("initial data")
+		def item2 = "second data added"
 
-		when: "an item is added to the front of the list"
+		when: "an data is added to the front of the list"
 		list.add(0, item2)
 
-		then: "the head of the list is the item second item added"
-		item2.equals(list.getHead().getItem())
+		then: "the head of the list is the data second data added"
+		item2.equals(list.getHead().getData())
 	}
 
 	def "Can add an item to the end of the list"() {
-		given: "an initial list and an item to add to the end"
-		def list = new UnorderedList("initial item")
-		def item2 = "second item added"
+		given: "an initial list and an data to add to the end"
+		def list = new UnorderedList("initial data")
+		def item2 = "second data added"
 
-		when: "an item is added to the end of the list"
+		when: "an data is added to the end of the list"
 		list.add(item2)
 
-		then: "the head of the list is the item second item added"
+		then: "the head of the list is the data second data added"
 		item2.equals(list.pop())
 	}
 
@@ -42,14 +42,14 @@ class UnorderedListTest extends Specification {
 		list.add(4)
 		list.add(5)
 
-		when: "an item is added to an arbitrary position and later removed"
+		when: "an data is added to an arbitrary position and later removed"
 		list.add(3, 7)
 
-		then: "we get the expected item"
+		then: "we get the expected data"
 		list.pop(3) == 7.0
 	}
 
-	// remove item x
+	// remove data x
 	def "Can remove the first instance of the desired item"() {
 		given: "an initial list with two duplicated items"
 		def list = new UnorderedList<String>("a")
@@ -62,7 +62,7 @@ class UnorderedListTest extends Specification {
 		when: "the first duplicate is removed"
 		list.remove("c")
 
-		then: "we can get the expected index of the remaining item"
+		then: "we can get the expected index of the remaining data"
 		list.index("c") == 4
 	}
 

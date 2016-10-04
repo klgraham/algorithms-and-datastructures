@@ -10,16 +10,16 @@ import java.util.Optional;
  */
 public class Node<T extends Comparable<T>>
 {
-	private T item;
+	private T data;
 	private Optional<Node<T>> next;
 
-	public Node(T item) {
-		this.item = item;
+	public Node(T data) {
+		this.data = data;
 		this.next = Optional.empty();
 	}
 
-	public T getItem() {
-		return item;
+	public T getData() {
+		return data;
 	}
 
 	public Optional<Node<T>> getNext() {
@@ -30,9 +30,9 @@ public class Node<T extends Comparable<T>>
 		return next.isPresent();
 	}
 
-	public void setItem(final T item)
+	public void setData(final T data)
 	{
-		this.item = item;
+		this.data = data;
 	}
 
 	public void setNext(final Node<T> next)
@@ -54,13 +54,13 @@ public class Node<T extends Comparable<T>>
 
 		final Node<?> node = (Node<?>) o;
 
-		return item != null ? item.equals(node.item) : node.item == null;
+		return data != null ? data.equals(node.data) : node.data == null;
 
 	}
 
 	@Override
 	public int hashCode()
 	{
-		return item != null ? item.hashCode() : 0;
+		return data != null ? data.hashCode() : 0;
 	}
 }

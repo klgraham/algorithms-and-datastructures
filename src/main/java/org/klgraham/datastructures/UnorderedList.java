@@ -86,7 +86,7 @@ public class UnorderedList<T extends Comparable<T>> {
         Node<T> cursor = head;
         Node<T> previous = null;
 
-        while (!cursor.getItem().equals(item)) {
+        while (!cursor.getData().equals(item)) {
             if (cursor.hasNext()) {
                 previous = cursor;
                 cursor = cursor.getNext().get();
@@ -96,7 +96,7 @@ public class UnorderedList<T extends Comparable<T>> {
             }
         }
 
-        T itemRemoved = cursor.getItem();
+        T itemRemoved = cursor.getData();
         Node<T> nextNode;
         if (cursor.hasNext()) {
             nextNode = cursor.getNext().get();
@@ -118,7 +118,7 @@ public class UnorderedList<T extends Comparable<T>> {
         Node<T> cursor = head;
         int index = 0;
 
-        while (!cursor.getItem().equals(item)) {
+        while (!cursor.getData().equals(item)) {
             if (cursor.hasNext()) {
                 cursor = cursor.getNext().get();
                 index++;
@@ -156,7 +156,7 @@ public class UnorderedList<T extends Comparable<T>> {
             counter++;
         }
 
-        T removedItem = cursor.getItem();
+        T removedItem = cursor.getData();
         Node<T> nextAfterCursor = null;
         if (cursor.hasNext()) {
             nextAfterCursor = cursor.getNext().get();
