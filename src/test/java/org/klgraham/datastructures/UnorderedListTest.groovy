@@ -49,7 +49,6 @@ class UnorderedListTest extends Specification {
 		list.pop(3) == 7.0
 	}
 
-	// remove data x
 	def "Can remove the first instance of the desired item"() {
 		given: "an initial list with two duplicated items"
 		def list = new UnorderedList<String>("a")
@@ -66,5 +65,20 @@ class UnorderedListTest extends Specification {
 		list.index("c") == 4
 	}
 
-	// get size correctly
+	def "Can find an item in the list"() {
+		given: "a list"
+		def list = new UnorderedList<Integer>(0)
+		list.add(1)
+		list.add(2)
+		list.add(3)
+		list.add(4)
+		list.add(5)
+
+		expect: "we can search for things in the list"
+		list.find(d) == d
+		list.find(6) == null
+
+		where:
+		d << [1, 2, 3, 4, 5]
+	}
 }

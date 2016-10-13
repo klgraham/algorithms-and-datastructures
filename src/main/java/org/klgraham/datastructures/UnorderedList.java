@@ -1,5 +1,7 @@
 package org.klgraham.datastructures;
 
+import java.util.Optional;
+
 /**
  * An unordered, singly-linked list
  * @author Kenneth Graham
@@ -69,12 +71,24 @@ public class UnorderedList<T extends Comparable<T>> {
             head = newNode;
         }
 
-//        Node<T> nextNode = null;
-//        if (cursor.hasNext()) {
-//            nextNode = cursor.getNext().get();
-//        }
-//        cursor.setNext(newNode);
         itemCount++;
+    }
+
+    public T find(T item){
+        return this.find(item, Optional.ofNullable(this.head));
+    }
+
+    private T find(T item, Optional<Node<T>> node){
+        if (!node.isPresent()) {
+            return null;
+        }
+
+        if (node.get().getData().equals(item)) {
+            return node.get().getData();
+        }
+        else {
+            return find(item, node.get().getNext());
+        }
     }
 
     /**
