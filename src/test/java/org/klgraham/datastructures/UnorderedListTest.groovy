@@ -75,7 +75,7 @@ class UnorderedListTest extends Specification {
 		list.add(5)
 
 		expect: "we can search for things in the list"
-		list.find(d) == d
+		list.find(d) == new Node(d)
 		list.find(6) == null
 
 		where:

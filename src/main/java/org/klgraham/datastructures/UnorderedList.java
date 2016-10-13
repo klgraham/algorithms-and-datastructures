@@ -74,17 +74,17 @@ public class UnorderedList<T extends Comparable<T>> {
         itemCount++;
     }
 
-    public T find(T item){
+    public Node<T> find(T item){
         return this.find(item, Optional.ofNullable(this.head));
     }
 
-    private T find(T item, Optional<Node<T>> node){
+    private Node<T> find(T item, Optional<Node<T>> node){
         if (!node.isPresent()) {
             return null;
         }
 
         if (node.get().getData().equals(item)) {
-            return node.get().getData();
+            return node.get();
         }
         else {
             return find(item, node.get().getNext());
