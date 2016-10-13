@@ -1,9 +1,6 @@
 package org.klgraham.datastructures;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Spliterator;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
@@ -32,7 +29,7 @@ public class Stack<T> implements Iterable<T> {
     List<T> stack;
 
     public Stack() {
-        this.stack = new ArrayList<T>();
+        this.stack = new LinkedList<T>();
     }
 
     /**
