@@ -1,4 +1,4 @@
-package org.klgraham.datastructures;
+package org.klgraham.datastructures.list;
 
 import java.util.Optional;
 
@@ -12,10 +12,12 @@ public class Node<T extends Comparable<T>>
 {
 	private T data;
 	private Optional<Node<T>> next;
+	private Optional<Node<T>> previous;
 
 	public Node(T data) {
 		this.data = data;
 		this.next = Optional.empty();
+		this.previous = Optional.empty();
 	}
 
 	public T getData() {
@@ -30,6 +32,10 @@ public class Node<T extends Comparable<T>>
 		return next.isPresent();
 	}
 
+	public boolean hasPrevious() {
+		return previous.isPresent();
+	}
+
 	public void setData(final T data)
 	{
 		this.data = data;
@@ -38,6 +44,14 @@ public class Node<T extends Comparable<T>>
 	public void setNext(final Node<T> next)
 	{
 		this.next = Optional.ofNullable(next);
+	}
+
+	public Optional<Node<T>> getPrevious() {
+		return previous;
+	}
+
+	public void setPrevious(Node<T> previous) {
+		this.previous = Optional.ofNullable(previous);
 	}
 
 	@Override

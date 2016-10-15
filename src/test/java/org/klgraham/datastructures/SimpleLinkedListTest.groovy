@@ -1,5 +1,6 @@
 package org.klgraham.datastructures
 
+import org.klgraham.datastructures.list.SimpleLinkedList
 import spock.lang.Specification
 
 /**

@@ -1,4 +1,4 @@
-package org.klgraham.datastructures;
+package org.klgraham.datastructures.list;
 
 /**
  * Created by klogram on 10/12/16.
