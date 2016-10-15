@@ -1,7 +1,7 @@
-package org.klgraham.datastructures
+package org.klgraham.datastructures.list
 
+import org.klgraham.datastructures.list.DoublyLinkedList
 import org.klgraham.datastructures.list.Node
-import org.klgraham.datastructures.list.UnorderedList
 import spock.lang.Specification
 /**
  * Description of file content.
@@ -9,11 +9,11 @@ import spock.lang.Specification
  * @author kgraham
  * 10/4/16
  */
-class UnorderedListTest extends Specification {
+class DoublyLinkedListTest extends Specification {
 
 	def "Can add an item to the front of the list"() {
 		given: "an initial list and an data to add to the head"
-		def list = new UnorderedList("initial data")
+		def list = new DoublyLinkedList("initial data")
 		def item2 = "second data added"
 
 		when: "an data is added to the front of the list"
@@ -25,7 +25,7 @@ class UnorderedListTest extends Specification {
 
 	def "Can add an item to the end of the list"() {
 		given: "an initial list and an data to add to the end"
-		def list = new UnorderedList("initial data")
+		def list = new DoublyLinkedList("initial data")
 		def item2 = "second data added"
 
 		when: "an data is added to the end of the list"
@@ -37,7 +37,7 @@ class UnorderedListTest extends Specification {
 
 	def "Can add an item at an arbitrary position"() {
 		given: "an initial list"
-		def list = new UnorderedList<Double>(0)
+		def list = new DoublyLinkedList<Double>(0)
 		list.add(1)
 		list.add(2)
 		list.add(3)
@@ -53,7 +53,7 @@ class UnorderedListTest extends Specification {
 
 	def "Can remove the first instance of the desired item"() {
 		given: "an initial list with two duplicated items"
-		def list = new UnorderedList<String>("a")
+		def list = new DoublyLinkedList<String>("a")
 		list.add("b")
 		list.add("c")
 		list.add("d")
@@ -69,7 +69,7 @@ class UnorderedListTest extends Specification {
 
 	def "Can find an item in the list"() {
 		given: "a list"
-		def list = new UnorderedList<Integer>(0)
+		def list = new DoublyLinkedList<Integer>(0)
 		list.add(1)
 		list.add(2)
 		list.add(3)

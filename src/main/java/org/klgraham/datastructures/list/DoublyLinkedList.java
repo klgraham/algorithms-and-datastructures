@@ -22,7 +22,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     }
 
     public boolean isEmpty() {
-        return head == null;
+        return head == null || itemCount == 0;
     }
 
     /**
@@ -59,23 +59,28 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         Node<T> newNode = new Node(item);
         int location = 0;
 
-        Node<T> cursor = head;
-
-        while (location < index) {
-            cursor = cursor.getNext().get();
-            location++;
-        }
-
-        if (cursor.hasPrevious()) {
-            Node<T> prev = cursor.getPrevious().get();
-            prev.setNext(newNode);
-            newNode.setPrevious(prev);
-        }
-        newNode.setNext(cursor);
-        cursor.setPrevious(newNode);
-
         if (index == 0) {
+            newNode.setNext(head);
+            if (head != null) {
+                head.setPrevious(newNode);
+            }
             head = newNode;
+        }
+        else {
+            Node<T> cursor = head;
+
+            while (location < index) {
+                cursor = cursor.getNext().get();
+                location++;
+            }
+
+            if (cursor.hasPrevious()) {
+                Node<T> prev = cursor.getPrevious().get();
+                prev.setNext(newNode);
+                newNode.setPrevious(prev);
+            }
+            newNode.setNext(cursor);
+            cursor.setPrevious(newNode);
         }
 
         itemCount++;
@@ -132,6 +137,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             }
         }
         itemCount--;
+        cursor = null;
         return itemRemoved;
     }
 

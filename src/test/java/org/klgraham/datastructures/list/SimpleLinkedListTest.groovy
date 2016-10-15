@@ -1,4 +1,4 @@
-package org.klgraham.datastructures
+package org.klgraham.datastructures.list
 
 import org.klgraham.datastructures.list.SimpleLinkedList
 import spock.lang.Specification
