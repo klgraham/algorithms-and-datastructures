@@ -26,8 +26,6 @@ class HashTableTest extends Specification{
         for (int i = 0; i < 10; i++) {
             h.insert(i)
         }
-        h.insert(3)
-        h.insert(3)
 
         when: "we remove things"
         h.delete(0)
@@ -36,5 +34,25 @@ class HashTableTest extends Specification{
         then: "we can show they are no longer in the hash table"
         !h.contains(0)
         !h.contains(7)
+    }
+
+    def "Can find things in the hash table"() {
+        given: "a hash table"
+        def h = new HashTable<Integer>()
+        for (int i = 0; i < 10; i++) {
+            h.insert(i)
+        }
+        h.insert(25)
+
+        expect: "we can find the item with that key"
+        n == h.search(getHashCode(n))
+
+        where:
+
+        n << [0, 1, 2, 3, 25]
+    }
+
+    private int getHashCode(int n) {
+        return n.hashCode()
     }
 }
