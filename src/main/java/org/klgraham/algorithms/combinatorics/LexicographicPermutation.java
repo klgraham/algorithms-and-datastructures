@@ -3,6 +3,7 @@ package org.klgraham.algorithms.combinatorics;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Lexicographic permutation generation. Implements algorithm L from
@@ -123,5 +124,13 @@ public class LexicographicPermutation<T extends Comparable<T>> extends Permutati
             chars[i] = new Character(s.charAt(i));
         }
         return chars;
+    }
+
+    public static String charsToString(final List<Character> chars) {
+        StringBuilder sb = new StringBuilder();
+        for (Character c : chars) {
+            sb.append(c);
+        }
+        return sb.toString();
     }
 }
