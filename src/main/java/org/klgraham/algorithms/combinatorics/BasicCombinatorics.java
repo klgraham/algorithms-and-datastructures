@@ -35,13 +35,12 @@ public class BasicCombinatorics {
 
 	// tail-recursive, uses BigInteger to handle n above 21
 	public static BigInteger factorial(int n) {
-		if (n == 0) return BigInteger.valueOf(1);
-		return recursiveAccumulator(n-1, BigInteger.valueOf(1));
+		return fact(n, BigInteger.ONE);
 	}
 
-	private static BigInteger recursiveAccumulator(int n, BigInteger acc) {
-		if (n == 0) return acc;
-		return recursiveAccumulator(n-1, acc.multiply(BigInteger.valueOf(n)));
+	private static BigInteger fact(int n, BigInteger result) {
+		if (n == 0) return result;
+		return fact(n-1, result.multiply(BigInteger.valueOf(n)));
 	}
 
 	public static BigInteger binomial(int n, int m)
@@ -51,8 +50,13 @@ public class BasicCombinatorics {
 
 	public static void main(String[] args)
 	{
-		System.out.println("100! = " + BasicCombinatorics.factorial(100));
-		System.out.println("10 choose 3 = " + BasicCombinatorics.binomial(10, 3));
+		System.out.println("0! = " + BasicCombinatorics.factorial(0));
+		System.out.println("1! = " + BasicCombinatorics.factorial(1));
+		System.out.println("2! = " + BasicCombinatorics.factorial(2));
+		System.out.println("3! = " + BasicCombinatorics.factorial(3));
+		System.out.println("4! = " + BasicCombinatorics.factorial(4));
+		System.out.println("5! = " + BasicCombinatorics.factorial(5));
+//		System.out.println("10 choose 3 = " + BasicCombinatorics.binomial(10, 3));
 
 	}
 }
