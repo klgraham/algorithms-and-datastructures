@@ -92,6 +92,15 @@ public class RecursiveLexicographicPermutation<T extends Comparable<T>> {
         return chars;
     }
 
+    public String charsToString(final List<Character> chars) {
+        StringBuilder sb = new StringBuilder();
+
+        for (Character c : chars) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
     private <K> List<K> tail(List<K> list)
     {
         return list.subList(1, list.size());
