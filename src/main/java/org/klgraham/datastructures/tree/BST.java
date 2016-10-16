@@ -76,14 +76,14 @@ public class BST<K extends Comparable<K> , V> {
      * The next node has the smallest key larger than this node's key.
      * @return Successor node of the input
      */
-    public BST<K, V> next() {
-        // return the smallest member of the right subtree, if possible
-        if (this.right != null) {
-            return this.right.findMinimum();
-        }
-
-
-    }
+//    public BST<K, V> next() {
+//        // return the smallest member of the right subtree, if possible
+//        if (this.right != null) {
+//            return this.right.findMinimum();
+//        }
+//
+//
+//    }
 
     private BST<K, V>  search(K key, BST<K, V> tree) {
         BST<K, V> x = tree;
