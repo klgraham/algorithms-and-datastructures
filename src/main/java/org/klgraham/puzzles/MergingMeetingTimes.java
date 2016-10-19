@@ -6,7 +6,7 @@ import java.util.*;
  * Created by klogram on 10/18/16.
  */
 public class MergingMeetingTimes {
-    
+
     public static List<Meeting> condenseMeetingTimes(List<Meeting> meetings) {
         if (meetings.isEmpty()) {
             throw new IllegalArgumentException("Input list must not be empty.");
