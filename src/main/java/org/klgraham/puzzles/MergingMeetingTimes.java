@@ -1,5 +1,7 @@
 package org.klgraham.puzzles;
 
+import org.klgraham.datastructures.Pair;
+
 import java.util.*;
 
 /**
@@ -46,6 +48,46 @@ public class MergingMeetingTimes {
     }
 
     /**
+     * Given a list of meetings, return a list of Meeting pairs, where each
+     * Meeting in the pair overlaps with each other
+     * @param meetings
+     * @return
+     */
+    public static List<Pair<Meeting>> getConflicts(List<Meeting> meetings) {
+        if (meetings.isEmpty()) {
+            throw new IllegalArgumentException("Input list must not be empty.");
+        }
+
+        if (meetings.size() == 1) {
+            return Collections.emptyList();
+        }
+
+        List<Pair<Meeting>> overlappingMeetings = new ArrayList<>(meetings.size() - 1);
+
+        // meeting must be sorted, this is O(n log n)
+        // if it is guaranteed that the input is sorted, this can be skipped.
+        Collections.sort(meetings, new Comparator<Meeting>() {
+            public int compare(Meeting m1, Meeting m2)  {
+                return m1.start - m2.start;
+            }
+        });
+
+        // iterating through the list once takes O(n)
+        Iterator<Meeting> meetingIterator = meetings.iterator();
+        Meeting previousMeeting = meetingIterator.next();
+
+        while (meetingIterator.hasNext()) {
+            Meeting currentMeeting = meetingIterator.next();
+            if (previousMeeting.conflictsWith(currentMeeting)) {
+                overlappingMeetings.add(new Pair<>(previousMeeting, currentMeeting));
+            }
+            previousMeeting = currentMeeting;
+        }
+
+        return overlappingMeetings;
+    }
+
+    /**
      * This class provides a simple way to model the problem domain
      */
     public static class Meeting{
@@ -69,8 +111,14 @@ public class MergingMeetingTimes {
         }
 
         // A and B overlap if A is not before or after B
+        // this allows one to start when the other ends
         public boolean overlapsWith(Meeting m) {
             return !this.isBefore(m) && !this.isAfter(m);
+        }
+
+        // A and B conflict if B starts before A ends
+        public boolean conflictsWith(Meeting m) {
+            return this.end > m.start;
         }
 
         public Meeting plus(final Meeting m) {

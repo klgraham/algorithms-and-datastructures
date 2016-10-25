@@ -1,5 +1,6 @@
 package org.klgraham.puzzles
 
+import org.klgraham.datastructures.Pair
 import spock.lang.Specification
 
 /**
@@ -21,6 +22,21 @@ class MergingMeetingTimesTest extends Specification {
                               new MergingMeetingTimes.Meeting(3, 8),
                               new MergingMeetingTimes.Meeting(9, 12)]]
     }
+
+    def "Can get a list of overlapping meetings" () {
+        given: "a list of meeting time ranges"
+        def meetings = [new MergingMeetingTimes.Meeting(0, 1), new MergingMeetingTimes.Meeting(3, 5),
+                        new MergingMeetingTimes.Meeting(4, 8), new MergingMeetingTimes.Meeting(10, 12),
+                        new MergingMeetingTimes.Meeting(9, 10)]
+
+        expect:
+        MergingMeetingTimes.getConflicts(meetings).equals(overlappingMeetings)
+
+        where:
+        overlappingMeetings << [[new Pair<>(new MergingMeetingTimes.Meeting(3, 5), new MergingMeetingTimes.Meeting(4, 8))]]
+    }
+
+
 
     def "Can condense meetings when adjacent meetings don't quite overlap" () {
         given: "a list of meeting time ranges"
