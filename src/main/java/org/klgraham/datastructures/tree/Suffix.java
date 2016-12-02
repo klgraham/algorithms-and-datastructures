@@ -30,6 +30,11 @@ public class Suffix implements Comparable<Suffix>
 		return text.charAt(i + index);
 	}
 
+	public int getIndex()
+	{
+		return index;
+	}
+
 	@Override
 	public int compareTo(final Suffix other)
 	{
